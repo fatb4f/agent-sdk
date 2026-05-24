@@ -1,0 +1,12 @@
+# Skills Frame
+
+{{ .skillFrame.discovery_rule }}
+
+| ID | Status | Path | Purpose |
+|---|---|---|---|
+{{- range .skillFrame.rows }}
+| {{ .id }} | {{ .status }} | `{{ .path }}` | {{ .purpose }} |
+{{- end }}
+
+Source of truth: `{{ .skillFrame.source_of_truth }}`
+Inventory projection: `{{ .skillFrame.inventory_projection }}`

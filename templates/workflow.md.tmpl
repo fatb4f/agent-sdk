@@ -1,0 +1,20 @@
+# Workflow Frame
+
+{{ .workflowFrame.validation_order }}
+
+| ID | Tool | Mode | Mutates Source | After | Blocks On |
+|---|---|---|---|---|---|
+{{- range .workflowFrame.phases }}
+| {{ .id }} | {{ .tool }} | {{ .mode }} | {{ .mutates_source }} | {{ .after }} | {{ .blocks_on }} |
+{{- end }}
+
+## Deferred
+{{ range $i, $v := .workflowFrame.deferred -}}
+{{ if $i }}, {{ end }}{{ $v }}
+{{- end }}
+
+## Generate Bashly Details
+- Command: `{{ range $i, $v := .workflowFrame.generate_bashly.command }}{{ if $i }} {{ end }}{{ $v }}{{ end }}`
+- Source Mutation Guard: `{{ .workflowFrame.generate_bashly.source_mutation_guard }}`
+
+Source of truth: `{{ .workflowFrame.source_of_truth }}`
